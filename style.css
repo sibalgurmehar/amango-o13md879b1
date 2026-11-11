@@ -351,3 +351,4 @@ button{font:inherit;cursor:pointer}
 .reelpage .page-inner{padding-bottom:13%}
 .reel.dragging{scroll-snap-type:none;cursor:grabbing}
 .reel{cursor:grab}
+.page[data-id="ny2-holi"] .cell:first-child img{object-position:center 100%}
