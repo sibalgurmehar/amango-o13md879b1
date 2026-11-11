@@ -300,7 +300,7 @@
 
     colophon: d => `
       <div class="page colophon"><div class="page-inner">
-        <p class="kicker">Colophon</p>
+        <p class="kicker">A Note to Close</p>
         ${d.lines.map(l => `<p>${rich(l)}</p>`).join("")}
       </div></div>`,
 
