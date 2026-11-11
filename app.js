@@ -64,7 +64,7 @@
     hint.textContent = "Checking…";
     const key = await tryUnlock(code);
     if (!key) {
-      hint.textContent = "Not quite. Think about December.";
+      hint.textContent = "Not quite. Think about January.";
       form.classList.remove("shake"); void form.offsetWidth; form.classList.add("shake");
       return;
     }
@@ -156,7 +156,7 @@
         <div class="num-grid">
           <div class="num wide"><strong data-since="${d.proposal}">—</strong><span>days since the first question · 14.12.2021</span>
             <div class="ticker" data-tick="${d.proposal}"></div></div>
-          <div class="num"><strong data-since="${d.official}">—</strong><span>days official · since 07.12.2022</span></div>
+          <div class="num"><strong data-since="${d.official}">—</strong><span>days official · since 07.01.2022</span></div>
           <div class="num"><strong data-until="${d.five}">—</strong><span>days until five years</span></div>
           ${d.extra.map(x => `<div class="num"><strong>${esc(x.n)}</strong><span>${esc(x.s)}</span></div>`).join("")}
         </div>
