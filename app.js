@@ -180,6 +180,7 @@
         <div class="grid ${d.layout || "g-a"}">
           ${d.photos.map(x => `<div class="cell">${ph(x.p, x.bw ? "bw" : "", x.cap)}${x.cap ? `<p class="cap">${rich(x.cap)}</p>` : ""}</div>`).join("")}
         </div>
+        ${d.body ? `<p class="body-copy">${rich(d.body)}</p>` : ""}
         ${d.pull ? `<p class="pull">${rich(d.pull)}</p>` : ""}
       </div></div>`,
 

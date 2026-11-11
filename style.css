@@ -352,3 +352,7 @@ button{font:inherit;cursor:pointer}
 .reel.dragging{scroll-snap-type:none;cursor:grabbing}
 .reel{cursor:grab}
 .page[data-id="ny2-holi"] .cell:first-child img{object-position:center 100%}
+.g-2{grid-template-columns:1fr 1fr;grid-template-rows:1fr}
+.page[data-id="summer"] .grid{flex:none}
+.page[data-id="summer"] .grid .cell .ph{flex:none;aspect-ratio:3/4}
+.page[data-id="summer"] .grid .cell:nth-child(2) .ph img{object-position:70% center}
