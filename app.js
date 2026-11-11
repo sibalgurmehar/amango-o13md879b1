@@ -262,6 +262,17 @@
         <p class="script">${esc(d.script)}</p>
       </div></div>`,
 
+    reel: d => `
+      <div class="page reelpage dark"><div class="page-inner">
+        <div class="head"><h3>${rich(d.title)}</h3><span class="kicker">${esc(d.label || "")}</span></div>
+        <div class="reel-wrap">
+          <button class="reel-btn prev" aria-label="Scroll back">&lsaquo;</button>
+          <div class="reel">${d.photos.map((x, i) => `<div class="rf">${ph(x.p, "", x.cap || "")}<span class="rn">${String(i + 1).padStart(2, "0")}</span></div>`).join("")}</div>
+          <button class="reel-btn next" aria-label="Scroll forward">&rsaquo;</button>
+        </div>
+        <p class="reel-hint">${esc(d.hint || "swipe the reel · tap a frame to open it")}</p>
+      </div></div>`,
+
     atlas: d => `
       <div class="page atlas"><div class="page-inner">
         <p class="kicker">${esc(d.kicker)}</p>
@@ -359,6 +370,22 @@
         sheet("Not yet, Amango.", [`This one opens on the fourteenth of December — five years to the day.`, `${days} more ${days === 1 ? "day" : "days"}. I promise it's worth the wait.`], "G.");
       }
     }));
+    // film reels: scroll sideways without turning the page
+    $$(".reel").forEach(r => {
+      ["mousedown", "pointerdown", "touchstart", "touchmove", "wheel"].forEach(ev =>
+        r.addEventListener(ev, e => e.stopPropagation(), { passive: true }));
+      // desktop: click-and-drag to scroll the reel
+      let dragX = null, startLeft = 0, moved = false;
+      r.addEventListener("mousedown", e => { dragX = e.clientX; startLeft = r.scrollLeft; moved = false; r.classList.add("dragging"); e.preventDefault(); });
+      window.addEventListener("mousemove", e => { if (dragX === null) return; const dx = e.clientX - dragX; if (Math.abs(dx) > 4) moved = true; r.scrollLeft = startLeft - dx; });
+      window.addEventListener("mouseup", () => { if (dragX === null) return; dragX = null; r.classList.remove("dragging"); });
+      r.addEventListener("click", e => { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
+      const wrap = r.parentElement;
+      const step = () => (r.querySelector(".rf")?.offsetWidth || 200) + 10;
+      wrap.querySelector(".prev").addEventListener("click", e => { e.stopPropagation(); r.scrollBy({ left: -step(), behavior: "smooth" }); });
+      wrap.querySelector(".next").addEventListener("click", e => { e.stopPropagation(); r.scrollBy({ left: step(), behavior: "smooth" }); });
+      ["mousedown", "pointerdown", "touchstart"].forEach(ev => wrap.querySelectorAll(".reel-btn").forEach(b => b.addEventListener(ev, e => e.stopPropagation(), { passive: true })));
+    });
     tickers();
     setInterval(tickers, 1000);
   }

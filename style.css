@@ -330,3 +330,24 @@ button{font:inherit;cursor:pointer}
 .g-v{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
 .page[data-id="chd-feature"] .ph.hero{height:54%}
 .page[data-id="chd-feature"] .ph.hero img{object-position:center 88%}
+/* ---------- REEL (scrollable film strip) ---------- */
+.reelpage{background:#141012}
+.reelpage .page-inner{padding:6% 0 9%}
+.reelpage .head{margin:0 7% .8rem;color:#eee;border-color:#555}
+.reel-wrap{flex:1;min-height:0;position:relative;display:flex;align-items:stretch}
+.reel{flex:1;display:flex;gap:10px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  padding:30px 14px;background-color:#0b090a;scrollbar-width:none;overscroll-behavior-x:contain;
+  background-image:repeating-linear-gradient(90deg,#e9e1dc 0 14px,transparent 14px 30px),repeating-linear-gradient(90deg,#e9e1dc 0 14px,transparent 14px 30px);
+  background-size:100% 10px,100% 10px;background-position:0 9px,0 calc(100% - 9px);background-repeat:repeat-x;background-attachment:local,local}
+.reel::-webkit-scrollbar{display:none}
+.rf{flex:0 0 auto;height:100%;aspect-ratio:3/4;scroll-snap-align:center;position:relative;background:#222}
+.rf .ph{width:100%;height:100%}
+.rn{position:absolute;bottom:-21px;left:4px;font-family:var(--sans);font-size:.55rem;letter-spacing:.2em;color:#d8b25a}
+.reel-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:34px;height:34px;border-radius:50%;border:0;background:rgba(239,232,228,.85);color:var(--plum);font-size:1.4rem;line-height:1;box-shadow:0 4px 10px rgba(0,0,0,.4)}
+.reel-btn.prev{left:6px}.reel-btn.next{right:6px}
+.reel-hint{text-align:center;font-family:var(--sans);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:#a99;margin-top:.7rem}
+.reel{align-items:center}
+.rf{height:84%}
+.reelpage .page-inner{padding-bottom:13%}
+.reel.dragging{scroll-snap-type:none;cursor:grabbing}
+.reel{cursor:grab}
