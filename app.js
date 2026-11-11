@@ -278,7 +278,8 @@
       <div class="page atlas"><div class="page-inner">
         <p class="kicker">${esc(d.kicker)}</p>
         <h2 class="atlas-title">${rich(d.title)}</h2>
-        <ol class="route">${d.places.map(p => `<li><span class="pin"></span><div><b>${esc(p.name)}</b><small>${esc(p.note)}</small></div></li>`).join("")}</ol>
+        <div class="route-wrap"><ol class="route">${d.places.map(p => `<li><span class="pin"></span><div><b>${esc(p.name)}</b><small>${esc(p.note)}</small></div></li>`).join("")}</ol>
+        <p class="scroll-hint">scroll the route ↓</p>
         <p class="pull">${rich(d.foot)}</p>
       </div></div>`,
 
@@ -357,7 +358,7 @@
       const [id, i] = b.dataset.env.split(":");
       const page = book.pages.find(p => p.id === id);
       const l = page.letters[+i];
-      sheet(l.title, l.paras, l.sig || "G.");
+      sheet(l.title, l.paras, l.sig || "Gur");
     }));
     // sealed
     $$("[data-sealed]").forEach(b => b.addEventListener("click", e => {
@@ -368,9 +369,15 @@
         sheet(page.letter.title, page.letter.paras, page.letter.sig);
       } else {
         const days = Math.ceil((when - Date.now()) / 864e5);
-        sheet("Not yet, Amango.", [`This one opens on the fourteenth of December — five years to the day.`, `${days} more ${days === 1 ? "day" : "days"}. I promise it's worth the wait.`], "G.");
+        sheet("Not yet, Amango.", [`This one opens on the fourteenth of December — five years to the day.`, `${days} more ${days === 1 ? "day" : "days"}. I promise it's worth the wait.`], "Gur");
       }
     }));
+    // vertical scroll areas (atlas route) shouldn't turn the page
+    $$(".route").forEach(r => ["mousedown", "pointerdown", "touchstart", "touchmove", "wheel"].forEach(ev =>
+      r.addEventListener(ev, e => e.stopPropagation(), { passive: true })));
+    // vertical scroll areas (atlas route, contents) shouldn't turn pages
+    $$(".route-wrap, .toc-list").forEach(el => ["mousedown", "pointerdown", "touchstart", "touchmove", "wheel"].forEach(ev =>
+      el.addEventListener(ev, e => e.stopPropagation(), { passive: true })));
     // film reels: scroll sideways without turning the page
     $$(".reel").forEach(r => {
       ["mousedown", "pointerdown", "touchstart", "touchmove", "wheel"].forEach(ev =>

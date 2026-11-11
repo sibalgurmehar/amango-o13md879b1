@@ -356,3 +356,20 @@ button{font:inherit;cursor:pointer}
 .page[data-id="summer"] .grid{flex:none}
 .page[data-id="summer"] .grid .cell .ph{flex:none;aspect-ratio:3/4}
 .page[data-id="summer"] .grid .cell:nth-child(2) .ph img{object-position:70% center}
+/* atlas: scrollable route list */
+.atlas .page-inner{padding-bottom:11%}
+.atlas .route{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-right:6px;padding-bottom:8px;
+  -webkit-mask-image:linear-gradient(to bottom,#000 88%,transparent);mask-image:linear-gradient(to bottom,#000 88%,transparent);scrollbar-width:thin}
+.atlas .route::-webkit-scrollbar{width:3px}.atlas .route::-webkit-scrollbar-thumb{background:var(--rose)}
+.atlas .route li{flex:none}
+.atlas .scroll-hint{font-family:var(--sans);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-soft);margin:.4rem 0 .2rem}
+.atlas .pull{margin-top:.4rem}
+.atlas .route::before{display:none}
+.atlas .route li::before{content:"";position:absolute;left:-1.18rem;top:1.15rem;height:calc(100% + .9rem);border-left:2px dashed var(--rose)}
+.atlas .route li:last-child::before{display:none}
+/* scrollable atlas route */
+.route-wrap{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  -webkit-mask-image:linear-gradient(to bottom,#000 88%,transparent);mask-image:linear-gradient(to bottom,#000 88%,transparent);padding-bottom:1.5rem}
+.route-wrap .route{flex:none}
+.scroll-hint{font-family:var(--sans);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin:.3rem 0 .2rem}
+.toc-list{min-height:0;flex:1;overscroll-behavior:contain}
