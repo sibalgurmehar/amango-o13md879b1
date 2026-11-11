@@ -274,6 +274,13 @@
         <p class="reel-hint">${esc(d.hint || "swipe the reel · tap a frame to open it")}</p>
       </div></div>`,
 
+    game: d => `
+      <div class="page gamepage dark"><div class="page-inner">
+        <div class="head"><h3>${rich(d.title)}</h3><span class="kicker">${esc(d.label || "")}</span></div>
+        <div class="meet-wrap"><canvas class="meet" data-game="${esc(d.id)}" aria-label="Interactive map game"></canvas></div>
+        <p class="reel-hint">${esc(d.hint || "")}</p>
+      </div></div>`,
+
     atlas: d => `
       <div class="page atlas"><div class="page-inner">
         <p class="kicker">${esc(d.kicker)}</p>
@@ -455,6 +462,12 @@
     for (const p of $$(".ph", pg)) {
       const img = $("img", p);
       photoURL(p.dataset.p).then(u => { if (u) { img.onload = () => img.classList.add("in"); img.src = u; } });
+    }
+    const game = $("canvas[data-game]", pg);
+    if (game && !game.dataset.on && window.MeetGame) {
+      game.dataset.on = 1;
+      const d = book.pages.find(x => x.id === game.dataset.game);
+      window.MeetGame(game, { landmarks: d.landmarks, message: d.message });
     }
     const heart = $("[data-heart]", pg);
     if (heart) buildHeart(heart);
