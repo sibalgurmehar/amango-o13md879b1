@@ -428,19 +428,18 @@
     for (let k = i - 2; k <= i + 5; k++) if (k >= 0) loadPage(k);
   }
 
-  const HEART = [
-    "..XXX...XXX..",
-    ".XXXXX.XXXXX.",
-    "XXXXXXXXXXXXX",
-    "XXXXXXXXXXXXX",
-    "XXXXXXXXXXXXX",
-    ".XXXXXXXXXXX.",
-    "..XXXXXXXXX..",
-    "...XXXXXXX...",
-    "....XXXXX....",
-    ".....XXX.....",
-    "......X......",
-  ];
+  const HEART = (() => {
+    const W = 18, H = 15, rows = [];
+    for (let r = 0; r < H; r++) {
+      let line = "";
+      for (let c = 0; c < W; c++) {
+        const x = (c - (W - 1) / 2) / ((W - 1) / 2) * 1.2, y = 1.2 - (r / 14.5) * 2.25;
+        line += Math.pow(x * x + y * y - 1, 3) - x * x * y * y * y <= 0 ? "X" : ".";
+      }
+      rows.push(line);
+    }
+    return rows;
+  })();
   let mosaicP = null;
   function mosaicURLs() {
     mosaicP ??= fetchPlain("mosaic.bin").then(buf => {
