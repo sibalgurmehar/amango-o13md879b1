@@ -328,3 +328,5 @@ button{font:inherit;cursor:pointer}
   .cl b{font-size:1.05rem}
 }
 .g-v{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
+.page[data-id="chd-feature"] .ph.hero{height:54%}
+.page[data-id="chd-feature"] .ph.hero img{object-position:center 88%}
