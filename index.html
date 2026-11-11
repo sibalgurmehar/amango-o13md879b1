@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2a1a20">
+<title>Volume III · For Aman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Jost:wght@300;400;500&family=Caveat:wght@500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ============ LOCK SCREEN ============ -->
+  <section id="lock" class="lock">
+    <div class="envelope" id="envelope">
+      <div class="env-back"></div>
+      <div class="env-letter">
+        <p class="kicker">Volume III</p>
+        <p class="env-title">For Aman</p>
+      </div>
+      <div class="env-front"></div>
+      <div class="env-flap"></div>
+      <button class="seal" id="sealBtn" aria-label="Break the seal">
+        <span>G<em>&amp;</em>A</span>
+      </button>
+    </div>
+
+    <form id="lockForm" class="lock-form" autocomplete="off">
+      <label for="code" class="kicker">The day we became official</label>
+      <input id="code" name="code" inputmode="numeric" placeholder="DD / MM / YYYY" aria-describedby="hint" autofocus>
+      <button type="submit" class="btn">Break the seal</button>
+      <p id="hint" class="hint">Only the two of us know this one.</p>
+    </form>
+  </section>
+
+  <!-- ============ THE BOOK ============ -->
+  <main id="stage" class="stage" hidden>
+    <div id="book" class="book"></div>
+    <nav class="controls" aria-label="Page navigation">
+      <button id="prev" class="ctl" aria-label="Previous page">&larr;</button>
+      <button id="toc" class="ctl ctl-label">Contents</button>
+      <span id="pageNum" class="page-num"></span>
+      <button id="next" class="ctl" aria-label="Next page">&rarr;</button>
+    </nav>
+  </main>
+
+  <div id="loading" class="loading" hidden><span>Opening the book…</span></div>
+
+  <!-- lightbox -->
+  <div id="lightbox" class="lightbox" hidden>
+    <button class="lb-close" aria-label="Close">&times;</button>
+    <img alt="">
+    <p class="lb-cap"></p>
+  </div>
+
+  <div class="hearts" aria-hidden="true"></div>
+
+  <script src="page-flip.browser.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
